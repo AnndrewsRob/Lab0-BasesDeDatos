@@ -62,8 +62,8 @@ def editarBarrio(request,idBarrio):
 
 def eliminarBarrio(request, idBarrio):
     barrio = Barrio.objects.get(idBarrio=idBarrio)
-  #  if barrio.vivienda_set.exists():
-  #      barrio.vivienda_set.update(idBarrio=None)
+    if barrio.vivienda_set.exists():
+        barrio.vivienda_set.update(idBarrio=None)
     barrio.delete()
     messages.success(request, '¡Barrio eliminado!')
 
