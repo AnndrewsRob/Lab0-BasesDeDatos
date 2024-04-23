@@ -9,22 +9,23 @@
         <div class="card">
             <div class="card-body">
                 <form action="/editarDepartamento/{{Departamento.idDepartamento}}/" method="POST">{% csrf_token %}
-                    <div class="form-group">
-                        <label class="form-label">Nombre departament</label>
-                        <input type="text" id="txtNombre" name="txtNombre" value="{{Departamento.nombreDepartamento}}" class="form-control" placeholder="Nombre"
-                            maxlength="50" required>
+                    <div class="form-group mb-3">
+                        <label class="form-label">Nombre departamento</label>
+                        <input type="text" id="txtNombre" name="txtNombre" class="form-control" value ="{{Departamento.nombreDepartamento}}" placeholder="Nombre" maxlength="50" required pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+" title="Por favor, ingrese solo letras en este campo">
                     </div>
+                    
 
                     <div class="form-group">
                         <label class="form-label">Población</label>
                         <input type="number" min="1" max="1000000" id="numPoblacion" name="numPoblacion" value="{{Departamento.poblacion}}" class="form-control" placeholder="Poblacion"
                             maxlength="50" required>
                     </div>
-                      <div class="form-group">
+                    <div class="form-group">
                         <label class="form-label">Documento del Gobernador</label>
-                        <input type="number" id="txtGobernador" name="txtGobernador" value="{{departamentos.idGobernador}}" class="form-control" placeholder="Numero de identificación"
-                            min="1000" required>
+                        <input type="text" id="txtGobernador" name="txtGobernador" value="{{Departamento.idGobernador.idPersona}}" class="form-control" placeholder="Número de identificación"
+                            minlength="6" maxlength="15"  pattern="[0-9]+" title="Por favor, ingrese un número de identificación válido (mínimo 6 dígitos)">
                     </div>
+                    
 
                     <div class="d-grid gap-2 caja-guardar">
                         <button type="submit" class="btn btn-block boton-guardar" >Guardar</button>

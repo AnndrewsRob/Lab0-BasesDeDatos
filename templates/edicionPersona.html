@@ -10,50 +10,61 @@
             <div class="card-body">
                 <form action="/editarPersona/{{persona.idPersona}}/" method="POST">{% csrf_token %}
                     <div class="form-group">
-                        <label class="form-label">Tipo de documento</label>
-                        <select id="txtDocumento" name="txtDocumento" class="form-select" required>
+                        <label for="txtTelefono" class="form-label">Tipo de documento</label>
+                        <select id="txtDocumento" name="txtDocumento" class="form-select form-control"  placeholder="Tipo de documento" required>
                             <option value="CC" {% if persona.tipo_de_documentacion == 'CC' %} selected {% endif %}>Cédula de ciudadania</option>
                             <option value="TI" {% if persona.tipo_de_documentacion == 'TI' %} selected {% endif %}>Tarjeta de Identidad</option>
                             <option value="CE" {% if persona.tipo_de_documentacion == 'CE' %} selected {% endif %}>Cédula de Extranjería</option>
                             <option value="N" {% if persona.tipo_de_documentacion == 'N' %} selected {% endif %}>No especificado</option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label class="form-label">Nombre</label>
-                        <input type="text" id="txtNombre" name="Nombre" value="{{persona.nombre}}" class="form-control" placeholder="Nombre"
-                            maxlength="50" required>
+                  
+                    <div class="form-group mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Nombre</label>
+                        <input type="text" id="txtNombre" name="Nombre" class="form-control" placeholder="Nombre" maxlength="50" required pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+">
+                        <small id="nombreHelp" class="form-text text-muted">Por favor, ingrese solo letras (A-Z) en este campo.</small>
                     </div>
-                    <div class="form-group">
-                        <label class="form-label">Apellido</label>
-                        <input type="text" id="txtApellido" name="Apellido" value="{{persona.apellido}}" class="form-control" placeholder="Apellido"
-                            maxlength="50" required>
+                    
+                    <div class="form-group mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Apellido</label>
+                        <input type="text" id="txtApellido" name="Apellido" class="form-control"  value="{{persona.apellido}}" placeholder="Apellido" maxlength="50" required pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+">
+                        <small id="apellidoHelp" class="form-text text-muted">Por favor, ingrese solo letras (A-Z) en este campo.</small>
                     </div>
-                    <div class="form-group">
-                        <label class="form-label">Telefono</label>
-                        <input type="number" id="txttelefono" name="telefono" value="{{persona.telefono}}" class="form-control" placeholder="telefono"
-                        min="1000000000" required>
+                    
+                    
+
+                    <div class="form-group mb-3">
+                        <label for="txtTelefono" class="form-label">Teléfono</label>
+                        <input type="tel" id="txtTelefono" name="telefono" class="form-control"  value="{{persona.telefono}}" placeholder="Teléfono" maxlength="50" required pattern="[0-9]{1,}-?[0-9]{1,}-?[0-9]{1,}" title="Por favor, ingrese un número de teléfono válido. Puede incluir guiones '-' para separar los dígitos.">
                     </div>
-                    <div class="form-group">
-                        <label class="form-label">Sexo</label>
-                        <select id="selectSexo" name="sexo" class="form-select" required>
-                            <option value="M" {% if persona.sexo == 'M' %} selected {% endif %}>Masculino</option>
-                            <option value="F" {% if persona.sexo == 'F' %} selected {% endif %}>Femenino</option>
-                            <option value="N" {% if persona.sexo == 'N' %} selected {% endif %}>No especificado</option>
+                    
+                    
+                    
+                    <div class="form-group mb-3">
+                        <label for="selectSexo" class="form-label">Sexo</label>
+                        <select id="selectSexo" name="sexo" class="form-select form-control" required>
+                            <option value="M">Masculino</option>
+                            <option value="F">Femenino</option>
+                            <option value="N">No especificado</option>
                         </select>
                     </div>
                     
                     <div class="form-group mb-3">
                         <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento</label>
-                        <input type="date" id="fechaNacimiento" name="fechaNacimiento"  value="{{d.fecha_nacimiento}}" class="form-control" placeholder="Fecha de Nacimiento" required>
+                        <input type="date" id="fechaNacimiento" name="fechaNacimiento" value="{{persona.fecha_nacimiento}}" class="form-control" placeholder="Fecha de Nacimiento" required>
                     </div>
+                    
+                    
+
                     <div class="form-group">
-                        <label class="form-label">Documento de cabeza de familia</label>
-                        <input type="number" id="txtCabezaIdentificacion" name="txtCabezaIdentificacion" value="{{persona.idResponsable.idPersona}}" class="form-control" placeholder="Numero de identificación" maxlength="50" required>
+                        <label  class="form-label">Documento de cabeza de familia</label>
+                        <input type="text" id="txtCabezaIdentificacion" name="txtCabezaIdentificacion" value="{{persona.idResponsable.idPersona}}" class="form-control" placeholder="Número de identificación"
+                            minlength="6" maxlength="15" required pattern="[0-9]+" title="Por favor, ingrese un número de identificación válido (entre 6 y 15 dígitos)">
                     </div>
 
                     <div class="form-group mb-3">
                         <label class="form-label">Dirección de la vivienda</label>
-                        <input type="text" id="txtBusquedaDireccion" class="form-control" placeholder="Buscar dirección de vivienda">
+                        <input type="text" id="txtBusquedaDireccion" class="form-control"  placeholder="Buscar dirección de vivienda">
                         <div id="selectWrapper" class="form-group mb-3" style="display: none;"> <!-- Utiliza un contenedor para el select y ocúltalo por defecto -->
                             <label class="form-label">Seleccionar dirección</label>
                             <select id="txtRelacionvivienda" name="txtRelacionvivienda" class="form-control">
@@ -64,7 +75,7 @@
                         </div>
                     </div>
                     
-        
+                    
                     
                     <div class="modal fade" id="modalBusquedaVivienda" tabindex="-1" aria-labelledby="modalBusquedaViviendaLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
@@ -88,12 +99,12 @@
                         <button type="submit" class="btn btn-block boton-guardar" >Guardar</button>
                     </div>
                     <!-- Modal para la búsqueda de vivienda -->
-                   
-                      </form>
-                      <div class="d-grid gap-2 caja-cancelar">
+                        
+  
+                </form>
+                <div class="d-grid gap-2 caja-cancelar">
                         <button class="btn btn-block boton-cancelar" onclick="goToPage('/')">Cancelar</button>
                     </div>
-                </form>
             </div>
         </div>
     </div>
@@ -165,5 +176,11 @@
         });
     });
     </script>
-    
+    <script>
+        // Obtener la fecha actual en el formato YYYY-MM-DD
+        var today = new Date().toISOString().split('T')[0];
+        
+        // Establecer la fecha máxima en el campo de entrada de fecha
+        document.getElementById('fechaNacimiento').setAttribute('max', today);
+    </script>
 {% endblock %}

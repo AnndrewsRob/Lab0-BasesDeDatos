@@ -8,16 +8,17 @@
           {% csrf_token %}
           <div class="form-group mb-3">
             <label class="form-label">Nombre departamento</label>
-            <input type="text" id="txtNombre" name="txtNombre" class="form-control" placeholder="Nombre" maxlength="50" required/>
-          </div>
+            <input type="text" id="txtNombre" name="txtNombre" class="form-control" placeholder="Nombre" maxlength="50" required pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+" title="Por favor, ingrese solo letras en este campo">
+        </div>
+        
           <div class="form-group mb-3">
             <label class="form-label">Poblacion</label>
             <input type="number" min="1" max="10000000" id="txtPoblacion" name="txtPoblacion" class="form-control" placeholder="100" maxlength="50" required/>
           </div>
-          <div class="form-group mb-3">
+          <div class="form-group">
             <label class="form-label">Documento del Gobernador</label>
-            <input type="number" id="txtGobernador" name="txtGobernador" value="{{departamentos.idGobernador}}" class="form-control" placeholder="Numero de identificación"
-            min="1000" required>
+            <input type="text" id="txtGobernador" name="txtGobernador" value="{{departamentos.idGobernador}}" class="form-control" placeholder="Número de identificación"
+                minlength="6" maxlength="15"  pattern="[0-9]+" title="Por favor, ingrese un número de identificación válido (mínimo 6 dígitos)">
         </div>
           <div class="d-grid gap-2 caja-guardar">
             <button type="submit" class="btn btn-block boton-guardar" >Guardar</button>

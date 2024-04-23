@@ -8,8 +8,8 @@
           {% csrf_token %}
           <div class="form-group mb-3">
             <label class="form-label">Nombre municipio</label>
-            <input type="text" required id="txtNombreMunicipio" name="txtNombreMunicipio" value="{{municipios.nombreMunicipio}}" class="form-control" placeholder="Puerto alegre" maxlength="50"/>
-          </div>
+            <input type="text" required id="txtNombreMunicipio" name="txtNombreMunicipio" value="{{municipios.nombreMunicipio}}" class="form-control" placeholder="Puerto alegre" maxlength="50" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+" title="Por favor, ingrese solo letras en este campo">
+        </div>
           <div class="form-group">
             <label class="form-label">Poblacion</label>
             <input type="number" required id="txPoblacion" name="txtPoblacion" value="{{municipios.poblacion}}" class="form-control" placeholder="10000"
@@ -36,9 +36,10 @@
           </div> 
           <div class="form-group">
             <label class="form-label">Documento del Alcalde</label>
-            <input type="number" required id="txtAlcalde" name="txtAlcalde" value="{{municipios.idAlcalde}}" class="form-control" placeholder="Numero de identificación"
-            min="1000">
+            <input type="text" required id="txtAlcalde" name="txtAlcalde" value="{{municipios.idAlcalde}}" class="form-control" placeholder="Número de identificación"
+                minlength="6" maxlength="15"  pattern="[0-9]+" title="Por favor, ingrese un número de identificación válido (mínimo 6 dígitos)">
         </div>
+        
         <div class="d-grid gap-2 caja-guardar">
           <button type="submit" class="btn btn-block boton-guardar" >Guardar</button>
       </div>

@@ -7,9 +7,9 @@
           <form action="/registrarBarrio/" method="POST">{% csrf_token %}
               <div class="form-group">
                 <label class="form-label">Nombre barrio</label>
-                  <input type="text" required id="txtNombreBarrio" name="txtNombreBarrio" value="{{barrios.nombreBarrio}}" class="form-control" placeholder="Galan"
-                     >
+                <input type="text" required id="txtNombreBarrio" name="txtNombreBarrio" value="{{barrios.nombreBarrio}}" class="form-control" placeholder="Galan" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+" title="Por favor, ingrese solo letras en este campo">
               </div>
+          
               <div class="form-group">
                 <label class="form-label">Población</label>
                   <input type="number" required id="txtPoblacion" name="txtPoblacion" value="{{barrios.poblacion}}" class="form-control" placeholder="1000"

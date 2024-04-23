@@ -26,23 +26,31 @@
                     </div>
                     <div class="form-group">
                         <label class="form-label">Número de identificación</label>
-                        <input type="number" id="txtNumeroIdentificacion" name="txtNumeroIdentificacion" value="{{persona.idPersona}}" class="form-control" placeholder="Numero de identificación"
-                            maxlength="50" required>
+                        <input type="text" id="txtNumeroIdentificacion" name="txtNumeroIdentificacion" value="{{persona.idPersona}}" class="form-control" placeholder="Número de identificación"
+                            minlength="6" maxlength="10" required pattern="[0-9]+" title="Por favor, ingrese un número de identificación válido (entre 6 y 15 dígitos)">
                     </div>
+                    
+                    
                     <div class="form-group mb-3">
                         <label for="exampleInputEmail1" class="form-label">Nombre</label>
-                        <input type="text" id="txtNombre" name="txtNombre" class="form-control" placeholder="Nombre"
-                            maxlength="50" required>
+                        <input type="text" id="txtNombre" name="txtNombre" class="form-control" placeholder="Nombre" maxlength="50" required pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+">
+                        <small id="nombreHelp" class="form-text text-muted">Por favor, ingrese solo letras (A-Z) en este campo.</small>
                     </div>
+                    
                     <div class="form-group mb-3">
                         <label for="exampleInputEmail1" class="form-label">Apellido</label>
-                        <input type="text" id="txtApellido" name="txtApellido" class="form-control" placeholder="Apellido"
-                            maxlength="50">
+                        <input type="text" id="txtApellido" name="txtApellido" class="form-control"  value="{{persona.apellido}}" placeholder="Apellido" maxlength="50" required pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+">
+                        <small id="apellidoHelp" class="form-text text-muted">Por favor, ingrese solo letras (A-Z) en este campo.</small>
                     </div>
+                    
+
                     <div class="form-group mb-3">
                         <label for="txtTelefono" class="form-label">Teléfono</label>
-                        <input type="number" id="txtTelefono" name="txtTelefono" class="form-control" placeholder="Teléfono" maxlength="50" required>
+                        <input type="tel" id="txtTelefono" name="txtTelefono" class="form-control" placeholder="Teléfono" maxlength="50" required pattern="[0-9]{1,}-?[0-9]{1,}-?[0-9]{1,}" title="Por favor, ingrese un número de teléfono válido. Puede incluir guiones '-' para separar los dígitos.">
                     </div>
+                    
+                    
+                    
                     <div class="form-group mb-3">
                         <label for="selectSexo" class="form-label">Sexo</label>
                         <select id="selectSexo" name="selectSexo" class="form-select form-control" required>
@@ -57,11 +65,12 @@
                         <input type="date" id="fechaNacimiento" name="fechaNacimiento" class="form-control" placeholder="Fecha de Nacimiento" required>
                     </div>
                     
+                    
 
                     <div class="form-group">
                         <label class="form-label">Documento de cabeza de familia</label>
-                        <input type="number" id="txtCabezaIdentificacion" name="txtCabezaIdentificacion" value="{{persona.idResposable}}" class="form-control" placeholder="Numero de identificación"
-                            maxlength="50" required>
+                        <input type="text" id="txtCabezaIdentificacion" name="txtCabezaIdentificacion" value="{{persona.idResposable}}" class="form-control" placeholder="Número de identificación"
+                            minlength="6" maxlength="15" required pattern="[0-9]+" title="Por favor, ingrese un número de identificación válido (entre 6 y 15 dígitos)">
                     </div>
 
                     <div class="form-group mb-3">
@@ -218,6 +227,13 @@
             }
         });
     });
+    </script>
+    <script>
+        // Obtener la fecha actual en el formato YYYY-MM-DD
+        var today = new Date().toISOString().split('T')[0];
+        
+        // Establecer la fecha máxima en el campo de entrada de fecha
+        document.getElementById('fechaNacimiento').setAttribute('max', today);
     </script>
     
 {% endblock %}
